@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject talkDisplay;
 
     public Text cPUMessage;
-           InputField inputField;
+    public InputField inputField;
     public Text displayInputText;
+    // public GameObject placeHolder;
 
     private string text;
 
@@ -25,7 +26,6 @@ public class GameManager : MonoBehaviour
     {
         public string ScenarioID;
         public List<string> Texts;
-        public List<string> Options;
         public string NextScenarioID;
     }
 
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
             
         };
 
-        inputField = GetComponent<InputField>();
+        inputField = GameObject.Find("InputField").GetComponent<InputField>();
         SetScenario(scenario01);
     }
 
@@ -92,7 +92,10 @@ public class GameManager : MonoBehaviour
                 switch (index)
                 {
                     case 5:
-                        LsJudge();
+                        SetNextMessageOnPlay();
+                        break;
+
+                    case 6:
                         break;
                 }
             }
@@ -107,6 +110,19 @@ public class GameManager : MonoBehaviour
         {
             index++;
             scenarioMessage.text = currentScenario.Texts[index];
+        }
+        else
+        {
+            ExitScenario();
+        }
+    }
+
+    void SetNextMessageOnPlay()
+    {
+        if (currentScenario.Texts.Count > index + 1)
+        {
+            index++;
+            cPUMessage.text = currentScenario.Texts[index];
         }
         else
         {
@@ -137,30 +153,27 @@ public class GameManager : MonoBehaviour
         cPUMessage.text = currentScenario.Texts[index];  
     }
 
-    void LsJudge()
-    {
-        index++;
-        cPUMessage.text = currentScenario.Texts[index];
-        StartCoroutine(Judge());
-    }
-
-    IEnumerator Judge()
-    {
-        while (true)
-        {
-            if (text == "ls")
-            {
-                break;
-            }
-        }
-        yield return null;
-    }
-
     public void DisplayText()
     {
-        // テキストに入力内容を表示
-        displayInputText.GetComponent<Text>().text = inputField.text;
-        text = inputField.text;
-    }
+        string textValue = inputField.text;
+        Debug.Log(textValue);
 
+
+        switch (index)
+        {
+            case 6:
+                if (textValue == "ls")
+                {
+                    index++;
+                    cPUMessage.text = currentScenario.Texts[index];
+                }
+
+                else
+                {
+                    cPUMessage.text = "無効なコマンドです。";
+                }
+                break;
+        }
+
+    }
 }
