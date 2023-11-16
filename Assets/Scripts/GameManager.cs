@@ -9,14 +9,17 @@ public class GameManager : MonoBehaviour
 
     public Text scenarioMessage;
     public GameObject talkDisplay;
+    public GameObject lSDisplay;
+    public GameObject toJewels;
+    public GameObject toOldBooks;
 
     public Text cPUMessage;
     public InputField inputField;
     public Text displayInputText;
-    // public GameObject placeHolder;
+    public Text judgeText;
 
     private string text;
-
+    private bool pushFlag = false;
 
     List<Scenario> scenarios = new List<Scenario>();
     Scenario currentScenario;
@@ -32,6 +35,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lSDisplay.SetActive(true);
+        toJewels.SetActive(false);
+        toOldBooks.SetActive(false);
+
         var scenario01 = new Scenario()
         {
             ScenarioID = "scenario01",
@@ -46,8 +53,9 @@ public class GameManager : MonoBehaviour
                 "区画の明かりをつけて中を確認するコマンドは ls です。コンソールに ls と入力して実行 (Enterを押す) しましょう。",
                 "明かりがつきました！次は新しい区画 OldBooks を作成しましょう。",
                 "区画を作成するコマンドは mkdir 区画名 です。コンソールに mkdir OldBooks と入力して実行しましょう。",
-                "新しい区画 Oldbooks が正しくできているか明かりをつけて確認します。",
-                "区画の明かりをつけて中を確認するコマンドは ls です。コンソールに ls と入力して実行 (Enterを押す) しましょう。"
+                "新しい区画 OldBooks が正しくできているか明かりをつけて確認します。",
+                "区画の明かりをつけて中を確認するコマンドは ls です。コンソールに ls と入力して実行 (Enterを押す) しましょう。",
+                "区画 OldBooks が出来ているのが確認できました！"
 
             },
             
@@ -56,6 +64,8 @@ public class GameManager : MonoBehaviour
         inputField = GameObject.Find("InputField").GetComponent<InputField>();
         SetScenario(scenario01);
     }
+
+    
 
     void SetScenario(Scenario scenario)
     {
@@ -68,36 +78,46 @@ public class GameManager : MonoBehaviour
     {
         if (currentScenario != null)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKey(KeyCode.Return))
             {
-                if(index < 4)
+                if (pushFlag == false)
                 {
-                    SetNextMessage();
-                }
+                    pushFlag = true;
 
-                else if(index == 4)
-                {
-                    Play();
-                }
+                    switch (index)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                            SetNextMessage();
+                            break;
 
-                else
-                {
+                        case 4:
+                            Play();
+                            break;
+
+                        case 5:
+                        case 7:
+                        case 9:
+                        case 11:
+                            SetNextMessageOnPlay();
+                            break;
+
+                        case 6:
+                            break;
+
+                        case 8:
+                            break;                                                    
+                    }
 
                 }
 
             }
 
-            else if (Input.GetKey(KeyCode.Return))
+            else
             {
-                switch (index)
-                {
-                    case 5:
-                        SetNextMessageOnPlay();
-                        break;
-
-                    case 6:
-                        break;
-                }
+                pushFlag = false;
             }
 
         }
@@ -113,7 +133,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            ExitScenario();
+            SceneManager.LoadScene("ClearScene");
         }
     }
 
@@ -126,24 +146,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            ExitScenario();
+            SceneManager.LoadScene("ClearScene");
         }
     }
 
-    void ExitScenario()
+    void LSDisplayOn()
     {
-        scenarioMessage.text = "";
-        index = 0;
-        if (string.IsNullOrEmpty(currentScenario.NextScenarioID))
-        {
-            currentScenario = null;
-        }
-        else
-        {
-            var nextScenario = scenarios.Find
-                (s => s.ScenarioID == currentScenario.NextScenarioID);
-            currentScenario = nextScenario;
-        }
+        lSDisplay.SetActive(true);
+        toJewels.SetActive(false);
+        toOldBooks.SetActive(false);
     }
 
     void Play()
@@ -156,21 +167,51 @@ public class GameManager : MonoBehaviour
     public void DisplayText()
     {
         string textValue = inputField.text;
-        Debug.Log(textValue);
-
+        displayInputText.text = inputField.text;
+        pushFlag = true;
 
         switch (index)
         {
             case 6:
+            case 10:
                 if (textValue == "ls")
                 {
+                    judgeText.text = "";
                     index++;
                     cPUMessage.text = currentScenario.Texts[index];
+                    lSDisplay.SetActive(false);
+                    
+                    if(index == 7)
+                    {
+                        toJewels.SetActive(true);
+                    }
+
+                    else if(index == 11)
+                    {
+                        toJewels.SetActive(true);
+                        toOldBooks.SetActive(true);
+                    }
+
                 }
 
                 else
                 {
-                    cPUMessage.text = "無効なコマンドです。";
+                    judgeText.text = "無効なコマンドです。";
+                }
+                break;
+
+            case 8:
+                if (textValue == "mkdir OldBooks")
+                {
+                    judgeText.text = "";
+                    index++;
+                    cPUMessage.text = currentScenario.Texts[index];
+                    LSDisplayOn();
+                }
+
+                else
+                {
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
         }
