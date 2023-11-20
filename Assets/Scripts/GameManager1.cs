@@ -4,19 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager1 : MonoBehaviour
 {
 
-    public Text scenarioMessage;
     public GameObject talkDisplay;
+    public Text talkText;
     public GameObject lSDisplay;
     public GameObject toJewels;
     public GameObject toOldBooks;
 
-    public Text cPUMessage;
     public InputField inputField;
     public Text displayInputText;
     public Text judgeText;
+    public Text cPUMessage;
 
     private string text;
     private bool pushFlag = false;
@@ -45,18 +45,17 @@ public class GameManager : MonoBehaviour
             Texts = new List<string>()
             {
                 "突然呼んで悪いが、君には私の家の資産整理を頼みたい。",
-                "私の家には古文書がたくさんあってね、そろそろ整理したいと思っていてるんだ。",
-                "そこで、古文書専用のそこで管理して欲しい。区画の名前も古い書物があることが伝わるようにしたい。",
+                "私の家には古文書がたくさんあってね、\nそろそろ整理したいと思っていてるんだ。",
+                "そこで、古文書専用の区画を作り、そこで管理して欲しい。\n区画の名前も古い書物があることが伝わるようにしたい。",
                 "そうだなぁ、区画の名前は OldBooks で頼む。",
                 "ミッション：区画 OldBooks を作成せよ！開始",
-                "あなたは新しく区画 OldBooks の作成を命令されました。コマンドを使用して命令を実行しましょう。",
-                "区画の明かりをつけて中を確認するコマンドは ls です。コンソールに ls と入力して実行 (Enterを押す) しましょう。",
+                "あなたは新しく区画 OldBooks の作成を命令されました。\nコマンドを使用して命令を実行しましょう。",
+                "区画の明かりをつけて中を確認するコマンドは ls です。\nコンソールに ls と入力して実行 (Enterを押す) しましょう。",
                 "明かりがつきました！次は新しい区画 OldBooks を作成しましょう。",
-                "区画を作成するコマンドは mkdir 区画名 です。コンソールに mkdir OldBooks と入力して実行しましょう。",
+                "区画を作成するコマンドは mkdir 区画名 です。\nコンソールに mkdir OldBooks と入力して実行しましょう。",
                 "新しい区画 OldBooks が正しくできているか明かりをつけて確認します。",
-                "区画の明かりをつけて中を確認するコマンドは ls です。コンソールに ls と入力して実行 (Enterを押す) しましょう。",
+                "区画の明かりをつけて中を確認するコマンドは ls です。\nコンソールに ls と入力して実行 (Enterを押す) しましょう。",
                 "区画 OldBooks が出来ているのが確認できました！"
-
             },
             
         };
@@ -70,7 +69,7 @@ public class GameManager : MonoBehaviour
     void SetScenario(Scenario scenario)
     {
         currentScenario = scenario;
-        scenarioMessage.text = currentScenario.Texts[0];
+        talkText.text = currentScenario.Texts[0];
     }
 
     // Update is called once per frame
@@ -105,10 +104,9 @@ public class GameManager : MonoBehaviour
                             break;
 
                         case 6:
-                            break;
-
                         case 8:
-                            break;                                                    
+                        case 10:
+                            break;
                     }
 
                 }
@@ -129,7 +127,7 @@ public class GameManager : MonoBehaviour
         if (currentScenario.Texts.Count > index + 1)
         {
             index++;
-            scenarioMessage.text = currentScenario.Texts[index];
+            talkText.text = currentScenario.Texts[index];
         }
         else
         {

@@ -855,8 +855,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1766222744}
-  - {fileID: 811241618}
   - {fileID: 657278982}
+  - {fileID: 811241618}
   - {fileID: 1424256793}
   m_Father: {fileID: 1899812036}
   m_RootOrder: 0
@@ -977,7 +977,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 610683885}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1214,7 +1214,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 610683885}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1341,15 +1341,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3478f4ac0be5945af881b90639b91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenarioMessage: {fileID: 73439552}
   talkDisplay: {fileID: 2061803585}
+  talkText: {fileID: 73439552}
   lSDisplay: {fileID: 417001251}
   toJewels: {fileID: 509267431}
   toOldBooks: {fileID: 764080271}
-  cPUMessage: {fileID: 1424256794}
   inputField: {fileID: 1766222745}
   displayInputText: {fileID: 657278980}
   judgeText: {fileID: 811241616}
+  cPUMessage: {fileID: 1424256794}
 --- !u!1 &1288250469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,7 +1682,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1144564114}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager1, Assembly-CSharp
         m_MethodName: DisplayText
         m_Mode: 1
         m_Arguments:
