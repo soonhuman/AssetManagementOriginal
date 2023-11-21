@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,19 +44,19 @@ public class GameManager1 : MonoBehaviour
             ScenarioID = "scenario01",
             Texts = new List<string>()
             {
-                "�ˑR�Ă�ň������A�N�ɂ͎��̉Ƃ̎��Y�����𗊂݂����B",
-                "���̉Ƃɂ͌Õ������������񂠂��ĂˁA\n���낻�됮���������Ǝv���Ă��Ă�񂾁B",
-                "�����ŁA�Õ�����p�̋������A�����ŊǗ����ė~�����B\n���̖��O���Â����������邱�Ƃ��`���悤�ɂ������B",
-                "�������Ȃ��A���̖��O�� OldBooks �ŗ��ށB",
-                "�~�b�V�����F��� OldBooks ���쐬����I�J�n",
-                "���Ȃ��͐V������� OldBooks �̍쐬�𖽗߂���܂����B\n�R�}���h���g�p���Ė��߂����s���܂��傤�B",
-                "���̖���������Ē����m�F����R�}���h�� ls �ł��B\n�R���\�[���� ls �Ɠ��͂��Ď��s (Enter������) ���܂��傤�B",
-                "�����肪���܂����I���͐V������� OldBooks ���쐬���܂��傤�B",
-                "�����쐬����R�}���h�� mkdir ��於 �ł��B\n�R���\�[���� mkdir OldBooks �Ɠ��͂��Ď��s���܂��傤�B",
-                "�V������� OldBooks ���������ł��Ă��邩����������Ċm�F���܂��B",
-                "���̖���������Ē����m�F����R�}���h�� ls �ł��B\n�R���\�[���� ls �Ɠ��͂��Ď��s (Enter������) ���܂��傤�B",
-                "��� OldBooks ���o���Ă���̂��m�F�ł��܂����I"
-            },
+				"突然呼んで悪いが、君には私の家の資産整理を頼みたい。",
+				"私の家には古文書がたくさんあってね、\nそろそろ整理したいと思っていてるんだ。",
+				"そこで、古文書専用の区画を作り、そこで管理して欲しい。\n区画の名前も古い書物があることが伝わるようにしたい。",
+				"そうだなぁ、区画の名前は OldBooks で頼む。",
+				"ミッション：区画 OldBooks を作成せよ！開始",
+				"あなたは新しく区画 OldBooks の作成を命令されました。\nコマンドを使用して命令を実行しましょう。",
+				"区画の明かりをつけて中を確認するコマンドは ls です。\nコンソールに ls と入力して実行 (Enterを押す) しましょう。",
+				"明かりがつきました！次は新しい区画 OldBooks を作成しましょう。",
+				"区画を作成するコマンドは mkdir 区画名 です。\nコンソールに mkdir OldBooks と入力して実行しましょう。",
+				"新しい区画 OldBooks が正しくできているか明かりをつけて確認します。",
+				"区画の明かりをつけて中を確認するコマンドは ls です。\nコンソールに ls と入力して実行 (Enterを押す) しましょう。",
+				"区画 OldBooks が出来ているのが確認できました！"
+			},
             
         };
 
@@ -194,7 +194,7 @@ public class GameManager1 : MonoBehaviour
 
                 else
                 {
-                    judgeText.text = "�����ȃR�}���h�ł��B";
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
 
@@ -209,7 +209,7 @@ public class GameManager1 : MonoBehaviour
 
                 else
                 {
-                    judgeText.text = "�����ȃR�}���h�ł��B";
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
         }

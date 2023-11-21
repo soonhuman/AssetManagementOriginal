@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,21 +55,21 @@ public class GameManager2 : MonoBehaviour
             ScenarioID = "scenario01",
             Texts = new List<string>()
             {
-                "���͕Еt�������Ȃ���Ȍ̂ɁA�Õ����ƕ�΂��ꊇ�� Jewels �ɊǗ����Ă��܂��Ă��ĂˁB",
-                "�����ŌN�ɂ� Jewels �Ƃ������ɍs���Ă�����āA\n��������Õ������قǍ����Oldbooks�Ɉړ����ė~�����B",
-                "�Õ����͖��O�� .txt �Ƃ��Ă��邩�炻��Ŕ��ʂ��Ă���B\n��낵�����ށB",
-                "�~�b�V���� : ��� Jewels �Ɉړ����A\n�����ɂ���Õ�������� Oldbooks �Ɉړ�����I�J�n",
-                "�܂��̓R�}���h���g�p���ċ�� Jewels �Ɉړ����܂��B",
-                "�����ړ�����R�}���h�� cd ��於 �ł��B\n�R���\�[���� cd Jewels ����͂��Ď��s���܂��傤�B",
-                "��� Jewels �Ɉړ����܂����I���͖���������Ē��g���m�F���܂��B\n�R���\�[���ɃR�}���h����͂��Ď��s���܂��傤�B",
-                "�����肪���܂����I���� History1.txt ����� Oldbooks �Ɉړ����܂��B",
-                "���ɂ��镨�𑼂̏ꏊ�Ɉړ�����R�}���h�� mv �ړ����������̖��O �ړ���̋��̏ꏊ �ł��B\n�R���\�[����  mv Hisoty1.txt /Hall/Oldbooks ����͂��Ď��s���܂��傤�B",
-                "History1.txt ���ړ��ł������𖾂�������Ċm�F���܂��B\n�R���\�[���ɃR�}���h����͂��Ď��s���܂��傤�B",
-                "History1.txt���ړ��ł����̂��m�F�ł��܂����I",
-                "���� Hisoty2.txt ����� OldBooks �Ɉړ����܂��B\n�R���\�[���ɃR�}���h����͂��Ď��s���܂��傤�B",
-                "History2.txt ���ړ��ł������𖾂�������Ċm�F���܂��B\n�R���\�[���ɃR�}���h����͂��Ď��s���܂��傤�B",
-                "�Õ��� History1.txt �� History2.txt ���ړ��ł��܂����I"
-            },
+				"私は片付けがかなり苦手な故に、古文書と宝石を一括で Jewels に管理してしまっていてね。",
+				"そこで君には Jewels という区画に行ってもらって、\nそこから古文書を先ほど作ったOldbooksに移動して欲しい。",
+				"古文書は名前に .txt とついているからそれで判別してくれ。\nよろしく頼む。",
+				"ミッション : 区画 Jewels に移動し、\nそこにある古文書を区画 Oldbooks に移動せよ！開始",
+				"まずはコマンドを使用して区画 Jewels に移動します。",
+				"区画を移動するコマンドは cd 区画名 です。\nコンソールに cd Jewels を入力して実行しましょう。",
+				"区画 Jewels に移動しました！次は明かりをつけて中身を確認します。\nコンソールにコマンドを入力して実行しましょう。",
+				"明かりがつきました！次は History1.txt を区画 Oldbooks に移動します。",
+				"区画にある物を他の場所に移動するコマンドは mv 移動したい物の名前 移動先の区画の場所 です。\nコンソールに  mv Hisoty1.txt /Hall/Oldbooks を入力して実行しましょう。",
+				"History1.txt が移動できたかを明かりをつけて確認します。\nコンソールにコマンドを入力して実行しましょう。",
+				"History1.txtが移動できたのが確認できました！",
+				"次は Hisoty2.txt を区画 OldBooks に移動します。\nコンソールにコマンドを入力して実行しましょう。",
+				"History2.txt が移動できたかを明かりをつけて確認します。\nコンソールにコマンドを入力して実行しましょう。",
+				"古文書 History1.txt と History2.txt を移動できました！"
+			},
 
         };
 
@@ -202,7 +202,7 @@ public class GameManager2 : MonoBehaviour
 
                 else
                 {
-                    judgeText.text = "�����ȃR�}���h�ł��B";
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
 
@@ -240,7 +240,7 @@ public class GameManager2 : MonoBehaviour
 
                 else
                 {
-                    judgeText.text = "�����ȃR�}���h�ł��B";
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
 
@@ -255,7 +255,7 @@ public class GameManager2 : MonoBehaviour
 
                 else
                 {
-                    judgeText.text = "�����ȃR�}���h�ł��B";
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
 
@@ -270,7 +270,7 @@ public class GameManager2 : MonoBehaviour
 
                 else
                 {
-                    judgeText.text = "�����ȃR�}���h�ł��B";
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
 
