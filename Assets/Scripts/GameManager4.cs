@@ -1,8 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class GameManager4 : MonoBehaviour
 {
@@ -55,18 +56,18 @@ public class GameManager4 : MonoBehaviour
             ScenarioID = "scenario04",
             Texts = new List<string>()
             {
-                "���������΁A�N�ɂ͍�Ə�������ĂȂ������ȁB",
-                "���̋@��ɍ�Ə�� Oldbooks �ɂ���{�̈ꗗ���L�^���ĖႤ���B\n �ꗗ�̖��O�� Contents.txt �ŗ��ށB",
-                "�~�b�V�����F��� Oldbooks �̒��ɂ���{�̖��O���L�^����I�J�n",
-                "�܂��� Contents.txt �𐶐����܂��B",
-                "�V�����e�L�X�g�t�@�C�������ɂ� vi �t�@�C���� �ł��B\n�R���\�[���� vi Contents.txt ����͂��Ď��s���܂��傤�B",
-                "�ҏW��ʂɈړ��ł��܂����I�����Ă͕ҏW���[�h���I���ɂ��܂��B\n�ҏW���[�h���I���ɂ���ɂ� a �������� i �������܂��B",
-                "�ҏW���[�h���I���ɏo���܂����B\nCollection List �Ə����Ă݂Ă��������B",
-                "���͋�� Oldbooks �ɂ���Õ����������L���܂��B\n�Õ����̖��O�� Hisoty1.txt �� Hisoty2.txt �ł��B",
-                "�Õ����ꗗ���������Ƃ��o�����̂ŕҏW��ʂ��I�����܂��B\n�܂��A�ҏW���[�h���I�����邽�߂ɂ�esc�L�[�������܂��B",
-                ":wq��������Enter�L�[�������Ă��������B",
-                "�Ō�ɖ���������ċ��̒��ɂ��镨���m�F���܂��B\n�R���\�[���ɃR�}���h����͂��Ď��s���܂��傤�B",
-                "Contents.txt �𐶐����邱�Ƃ��ł��܂����I"
+                "そういえば、君には作業場を教えてなかったな。",
+                "この機会に作業場で OldBooks にある本の一覧を記録して貰うか。\n 一覧の名前は Contents.txt で頼む。",
+                "ミッション：区画 OldBooks の中にある本の名前を記録しろ！開始",
+                "まずは Contents.txt を生成します。",
+                "新しいテキストファイルを作るには vi ファイル名 です。\nコンソールに vi Contents.txt を入力して実行しましょう。",
+                "編集画面に移動できました！続いては編集モードをオンにします。\n編集モードをオンにするには a もしくは i を押します。",
+                "編集モードをオンに出来ました。\nCollection List と書いてみてください。",
+                "次は区画 OldBooks にある古文書を書き記します。\n古文書の名前は History1.txt と History2.txt です。",
+                "古文書一覧を書くことが出来たので編集画面を終了します。\nまず、編集モードを終了するためにはescキーを押します。",
+                ":wqを押してEnterキーを押してください。",
+                "最後に明かりをつけて区画の中にある物を確認します。\nコンソールにコマンドを入力して実行しましょう。",
+                "Contents.txt を生成することができました！"
             },
 
         };
@@ -214,7 +215,7 @@ public class GameManager4 : MonoBehaviour
 
                 else
                 {
-                    judgeText.text = "�����ȃR�}���h�ł��B";
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
 
@@ -233,7 +234,7 @@ public class GameManager4 : MonoBehaviour
 
                 else
                 {
-                    judgeText.text = "�����ȃR�}���h�ł��B";
+                    judgeText.text = "無効なコマンドです。";
                 }
                 break;
         }
