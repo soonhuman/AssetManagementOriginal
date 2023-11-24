@@ -7,7 +7,6 @@ using UnityEditor;
 
 public class GameManager4 : MonoBehaviour
 {
-
     public GameObject talkDisplay;
     public Text talkText;
     public GameObject lSDisplay;
@@ -73,7 +72,6 @@ public class GameManager4 : MonoBehaviour
         };
 
         inputField = GameObject.Find("InputField").GetComponent<InputField>();
-        
 
         SetScenario(scenario04);
     }
