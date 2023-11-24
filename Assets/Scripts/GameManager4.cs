@@ -62,7 +62,7 @@ public class GameManager4 : MonoBehaviour
                 "新しいテキストファイルを作るには vi ファイル名 です。\nコンソールに vi Contents.txt を入力して実行しましょう。",
                 "編集画面に移動できました！続いては編集モードをオンにします。\n編集モードをオンにするには a もしくは i を押します。",
                 "編集モードをオンに出来ました。\nCollection List と書いてみてください。",
-                "次は区画 OldBooks にある古文書を書き記します。\n古文書の名前は History1.txt と History2.txt です。",
+                "次は区画 OldBooks にある古文書を書き記します。\n古文書の名前は History1.txt, History2.txt です。",
                 "古文書一覧を書くことが出来たので編集画面を終了します。\nまず、編集モードを終了するためにはescキーを押します。",
                 ":wqを押してEnterキーを押してください。",
                 "最後に明かりをつけて区画の中にある物を確認します。\nコンソールにコマンドを入力して実行しましょう。",
@@ -214,7 +214,8 @@ public class GameManager4 : MonoBehaviour
                 else
                 {
                     judgeText.text = "無効なコマンドです。";
-                }
+					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+				}
                 break;
 
             case 10:
@@ -233,7 +234,8 @@ public class GameManager4 : MonoBehaviour
                 else
                 {
                     judgeText.text = "無効なコマンドです。";
-                }
+					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+				}
                 break;
         }
 

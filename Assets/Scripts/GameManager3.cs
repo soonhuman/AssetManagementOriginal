@@ -192,6 +192,7 @@ public class GameManager3 : MonoBehaviour
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
 
@@ -207,6 +208,7 @@ public class GameManager3 : MonoBehaviour
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
 		}
