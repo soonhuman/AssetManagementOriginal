@@ -11,6 +11,7 @@ public class GameManager4 : MonoBehaviour
     public Text talkText;
     public GameObject lSDisplay;
 
+	public Text currentDirectory;
     public InputField inputField;
     public Text displayInputText;
     public Text judgeText;
@@ -20,13 +21,11 @@ public class GameManager4 : MonoBehaviour
     public InputField inputField1;
     public InputField inputField2;
     public InputField inputFieldUnder;
-    //public Text underText;
 
     public GameObject imageBook1;
     public GameObject imageBook2;
     public GameObject imageContents;
 
-    private string text;
     private bool pushFlag = false;
 
     List<Scenario> scenarios = new List<Scenario>();
@@ -140,8 +139,13 @@ public class GameManager4 : MonoBehaviour
             {
                 pushFlag = true;
                 SetNextMessageOnPlay();
+				inputField2.text = "History1.txt, History2.txt"; 
                 inputFieldUnder.text = "";
-            }
+
+				inputField1.interactable = false;
+				inputField2.interactable = false;
+
+			}
 
             else
             {

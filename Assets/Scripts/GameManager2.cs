@@ -14,7 +14,8 @@ public class GameManager2 : MonoBehaviour
     public GameObject toJewels;
     public GameObject toOldBooks;
 
-    public InputField inputField;
+	public Text currentDirectory;
+	public InputField inputField;
     public Text displayInputText;
     public Text judgeText;
     public Text cPUMessage;
@@ -62,11 +63,11 @@ public class GameManager2 : MonoBehaviour
 				"まずはコマンドを使用して区画 Jewels に移動します。",
 				"区画を移動するコマンドは cd 区画名 です。\nコンソールに cd Jewels を入力して実行しましょう。",
 				"区画 Jewels に移動しました！次は明かりをつけて中身を確認します。\nコンソールにコマンドを入力して実行しましょう。",
-				"明かりがつきました！次は History1.txt を区画 Oldbooks に移動します。",
-				"区画にある物を他の場所に移動するコマンドは mv 移動したい物の名前 移動先の区画の場所 です。\nコンソールに  mv Hisoty1.txt /Hall/Oldbooks を入力して実行しましょう。",
+				"明かりがつきました！次は History1.txt を区画 OldBooks に移動します。",
+				"区画にある物を他の場所に移動するコマンドは mv 移動したい物の名前 移動先の区画の場所 です。\nコンソールに  mv History1.txt /Hall/Oldbooks を入力して実行しましょう。",
 				"History1.txt が移動できたかを明かりをつけて確認します。\nコンソールにコマンドを入力して実行しましょう。",
 				"History1.txtが移動できたのが確認できました！",
-				"次は Hisoty2.txt を区画 OldBooks に移動します。\nコンソールにコマンドを入力して実行しましょう。",
+				"次は History2.txt を区画 OldBooks に移動します。\nコンソールにコマンドを入力して実行しましょう。",
 				"History2.txt が移動できたかを明かりをつけて確認します。\nコンソールにコマンドを入力して実行しましょう。",
 				"古文書 History1.txt と History2.txt を移動できました！"
 			},
@@ -74,6 +75,7 @@ public class GameManager2 : MonoBehaviour
         };
 
         inputField = GameObject.Find("InputField").GetComponent<InputField>();
+		inputField.interactable = false;
         SetScenario(scenario02);
     }
 
@@ -109,9 +111,19 @@ public class GameManager2 : MonoBehaviour
                             break;
 
                         case 4:
-                        case 7:
+							currentDirectory.text = "/ Hall :";
+							inputField.interactable = true;
+							inputField.text = "Please enter here.";
+							SetNextMessageOnPlay();
+							break;
+
+						case 7:
                         case 10:
-                        case 13:
+							inputField.text = "Please enter here.";
+							SetNextMessageOnPlay();
+							break;
+
+						case 13:
                             SetNextMessageOnPlay();
                             break;
 
@@ -193,6 +205,7 @@ public class GameManager2 : MonoBehaviour
             case 5:
                 if (textValue == "cd Jewels")
                 {
+					currentDirectory.text = "/Hall/Jewels :";
                     judgeText.text = "";
                     panelWalls.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
                     index++;
@@ -236,7 +249,8 @@ public class GameManager2 : MonoBehaviour
                     {
                         imageRuby.SetActive(true);
                         imageSapphire.SetActive(true);
-                    }
+						inputField.interactable = true;
+					}
                 }
 
                 else

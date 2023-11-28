@@ -13,7 +13,8 @@ public class GameManager1 : MonoBehaviour
     public GameObject toJewels;
     public GameObject toOldBooks;
 
-    public InputField inputField;
+	public Text currentDirectory;
+	public InputField inputField;
     public Text displayInputText;
     public Text judgeText;
     public Text cPUMessage;
@@ -61,7 +62,8 @@ public class GameManager1 : MonoBehaviour
         };
 
         inputField = GameObject.Find("InputField").GetComponent<InputField>();
-        SetScenario(scenario01);
+		inputField.interactable = false;
+		SetScenario(scenario01);
     }
 
     
@@ -97,8 +99,19 @@ public class GameManager1 : MonoBehaviour
                             break;
 
                         case 5:
-                        case 7:
-                        case 9:
+							currentDirectory.text = "/Hall :";
+							inputField.interactable = true;
+							inputField.text = "Please enter here.";
+							SetNextMessageOnPlay();
+							break;
+
+						case 7:
+						case 9:
+							inputField.text = "Please enter here.";
+							SetNextMessageOnPlay();
+							break;
+
+						
                         case 11:
                             SetNextMessageOnPlay();
                             break;
@@ -188,7 +201,8 @@ public class GameManager1 : MonoBehaviour
                     {
                         toJewels.SetActive(true);
                         toOldBooks.SetActive(true);
-                    }
+						inputField.interactable = true;
+					}
 
                 }
 

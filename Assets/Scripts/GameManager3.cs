@@ -12,10 +12,21 @@ public class GameManager3 : MonoBehaviour
 	public Text talkText;
 	public GameObject lSDisplay;
 
+	public Text currentDirectory;
 	public InputField inputField;
 	public Text displayInputText;
 	public Text judgeText;
 	public Text cPUMessage;
+
+	public GameObject imageDirectory;
+	public GameObject arrowHall;
+	public GameObject arrowJewels;
+	public GameObject arrowFromJewelsToOldBooks;
+	public GameObject arrowFromJewelsToHall;
+	public GameObject arrowFromHallToOldBooks;
+	public GameObject withHall;
+	public GameObject withJewels;
+	public GameObject withOldBooks;
 
 
 	private bool pushFlag = false;
@@ -34,28 +45,43 @@ public class GameManager3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var scenario03 = new Scenario()
+		imageDirectory.SetActive(false);
+		arrowHall.SetActive(false);
+		arrowJewels.SetActive(false);
+		arrowFromJewelsToOldBooks.SetActive(false);
+		arrowFromJewelsToHall.SetActive(false);
+		arrowFromHallToOldBooks.SetActive(false);
+		withHall.SetActive(false);
+		withJewels.SetActive(false);
+		withOldBooks.SetActive(false);
+
+		var scenario03 = new Scenario()
         {
             ScenarioID = "scenario03",
             Texts = new List<string>()
             {
 				"さっき君が入力した /Hall/OldBooks や /Hall/Jewels について説明しよう。",
-				"/Hall/OldBooksのような物は 絶対パス という。",
-				"絶対パスとは、ファイル( History1.txt など)や\nディレクトリ(これまで 区画 と呼んでいたもの)の場所を\n一番上の階層から示す方法のことだ。",
+				"/Hall/OldBooksのような物は<color=#4169e1>絶対パス</color>という。",
+				"絶対パスとは、<color=#4169e1>ファイル</color>(History1.txtなど)や\n<color=#4169e1>ディレクトリ</color>(これまで 区画 と呼んでいたもの)の場所を\n一番上の階層から示す方法のことだ。",
 				"この家だと、Hallからここまでの階層を示してることになる。",
-				"また、それに対して 相対パス というのもある。",
-				"相対パスは、君が今いるディレクトリを基準にして\nファイルやディレクトリの場所を示す方法のことだ。",
+				"また、それに対して<color=#4169e1>相対パス</color>というのもある。",
+				"相対パスは、<color=#4169e1>君が今いるディレクトリ</color>(今だとJewels)を基準にして\nファイルやディレクトリの場所を示す方法のことだ。",
 				"今まで君が cd 区画名 とコマンドを使って区画を移動していた時は\n相対パスを使っていた。",
-				"相対パスは特に今いるディレクトリ内にあるファイルや\nディレクトリへのアクセスを行うときに便利だ。",
+				"相対パスは<color=#4169e1>特に今いるディレクトリ内にあるファイルや\nディレクトリ</color>へのアクセスを行うときに便利だ。",
 				"折角だし相対パスにもう少し慣れようか。\n君はここから相対パスを使って OldBooks に移動してくれ。",
 				"ミッション:相対パスを用いて区画 OldBooks に移動しろ！開始",
 				"まずは区画 Hall に移動しましょう。区画を移動するコマンドは cd 区画名 です。\nコンソールに cd .. を入力して実行しましょう。",
 				"区画 Hall に移動出来ました！",
-				"そういえば、cd .. について言い忘れていたな。cd .. は親ディレクトリに移動するんだ。",
-				"もう少しわかりやすく言おう。親ディレクトリは今いるディレクトリから\n1つ上の階層に位置するディレクトリの事を指す。",
-				"この家で考えるとわかりやすいと思う。\nこ家で考えると区画 OldBooks や Jewels にとって、\n区画 Hall は親ディレクトリになるんだ。",
+				"そういえば、cd .. について言い忘れていたな。\n<color=#4169e1>cd .. は親ディレクトリに移動</color>するんだ。",
+				"もう少しわかりやすく言おう。親ディレクトリは<color=#4169e1>今いるディレクトリから\n1つ上の階層に位置するディレクトリ</color>の事を指す。",
+				"この家で例えよう。\nこの家で考えると<color=#4169e1>区画 OldBooks や Jewels にとって、\n区画 Hall は親ディレクトリ</color>になるんだ。",
 				"そして、今いるディレクトリの親ディレクトリに移動するには cd .. を使う。\nだから君は移動できた、ということになる。",
-				"それじゃあ、君は OldBooks に移動してくれ。私も後で向かう。",
+				"こう見ると相対パスは便利だと思うだろうが、1つ注意点がある。\nそれは、<color=#4169e1>直接アクセスできるのは今いるディレクトリにあるものだけ、</color>\nということだ。",
+				"さっきまでの行動を例にしよう。\n先ほど君がいた Jewels で cd .. をすれば、Hallに移動することができる。",
+				"だがJewelsにいる時に cd OldBooks とやってもOldBooksには移動できない。\nそれは、<color=#4169e1>JewelsとOldBooksが直接線でつながっていない</color>からだ。",
+				"もし君が Jewels から OldBooks に 直接移動したいなら\n<color=#4169e1>cd ../OldBooks</color> と打つ必要がある。",
+				"こうすると、<color=#4169e1>一旦 Hall に移動してから、OldBooks に移動する</color>ので\n正しく線を通っているため移動できる。",
+				"それじゃあ、君は OldBooks に移動してくれ。\n今は Hall にいるから、さっきのコマンドは使えないぞ。",
 				"それでは区画 OldBooks に移動します。コンソールにコマンドを入力して実行しましょう。",
 				"区画 OldBooks に移動できました！"
 			},
@@ -63,6 +89,7 @@ public class GameManager3 : MonoBehaviour
         };
 
 		inputField = GameObject.Find("InputField").GetComponent<InputField>();
+		inputField.interactable = false;
 
 		SetScenario(scenario03);
 	}
@@ -87,33 +114,122 @@ public class GameManager3 : MonoBehaviour
 					switch (index)
 					{
 						case 0:
+							SetNextMessage();
+							break;
+
 						case 1:
+							imageDirectory.SetActive(true);
+							SetNextMessage();
+							break;
+
 						case 2:
+							arrowHall.SetActive(true);
+							SetNextMessage();
+							break;
+
 						case 3:
+							arrowHall.SetActive(false);
+							SetNextMessage();
+							break;
+
 						case 4:
+							arrowJewels.SetActive(true);
+							SetNextMessage();
+							break;
+
 						case 5:
+							arrowJewels.SetActive(false);
+							SetNextMessage();
+							break;
+
 						case 6:
+							SetNextMessage();
+							break;
+
 						case 7:
+							SetNextMessage();
+							break;
+
 						case 8:
+							imageDirectory.SetActive(false);
+							SetNextMessage();
+							break;
+
 						case 11:
+							SetNextMessage();
+							break;
+
 						case 12:
+							imageDirectory.SetActive(true);
+							SetNextMessage();
+							break;
+
 						case 13:
+							withHall.SetActive(true);
+							withJewels.SetActive(true);
+							withOldBooks.SetActive(true);
+							SetNextMessage();
+							break;
+
 						case 14:
+							SetNextMessage();
+							break;
+
 						case 15:
+							withHall.SetActive(false);
+							withJewels.SetActive(false);
+							withOldBooks.SetActive(false);
+							SetNextMessage();
+							break;
+
+						case 16:
+							arrowFromJewelsToHall.SetActive(true);
+							SetNextMessage();
+							break;
+
+						case 17:
+							arrowFromJewelsToOldBooks.SetActive(true);
+							SetNextMessage();
+							break;
+
+						case 18:
+							arrowFromJewelsToHall.SetActive(false);
+							arrowFromJewelsToOldBooks.SetActive(false);
+							SetNextMessage();
+							break;
+
+						case 19:
+							arrowFromJewelsToHall.SetActive(true);
+							arrowFromHallToOldBooks.SetActive(true);
+							SetNextMessage();
+							break;
+
+						case 20:
+							imageDirectory.SetActive(false);
 							SetNextMessage();
 							break;
 
 						case 9:
-						case 16:
+							currentDirectory.text = "/Hall/Jewels : ";
+							inputField.text = "Please enter here.";
+							inputField.interactable = true;
 							Play();
 							break;
 
-						case 18:
+						case 21:
+							imageDirectory.SetActive(false);
+							currentDirectory.text = "/Hall : ";
+							inputField.text = "Please enter here.";
+							inputField.interactable = true;
+							Play();
+							break;
+
+						case 23:
 							SetNextMessageOnPlay();
 							break;
 
 						case 10:
-						case 17:
+						case 22:
 							break;
 
 					}
@@ -139,6 +255,10 @@ public class GameManager3 : MonoBehaviour
 		if(index == 11)
         {
 			cPUMessage.text = "";
+			currentDirectory.text = "";
+			inputField.text = "";
+			inputField.interactable = false;
+			displayInputText.text = "";
         }
 
 		if (currentScenario.Texts.Count > index + 1)
@@ -183,6 +303,7 @@ public class GameManager3 : MonoBehaviour
 			case 10:
 				if (textValue == "cd ..")
 				{
+					currentDirectory.text = "/Hall :";
 					judgeText.text = "";
 					index++;
 					cPUMessage.text = currentScenario.Texts[index];
@@ -196,9 +317,10 @@ public class GameManager3 : MonoBehaviour
 				}
 				break;
 
-			case 17:
+			case 22:
 				if (textValue == "cd OldBooks")
 				{
+					currentDirectory.text = "/Hall/OldBooks :";
 					judgeText.text = "";
 					index++;
 					cPUMessage.text = currentScenario.Texts[index];
