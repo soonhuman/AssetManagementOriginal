@@ -71,6 +71,7 @@ public class GameManager4 : MonoBehaviour
         };
 
         inputField = GameObject.Find("InputField").GetComponent<InputField>();
+		inputField.interactable = false;
 
         SetScenario(scenario04);
     }
@@ -106,6 +107,11 @@ public class GameManager4 : MonoBehaviour
                             break;
 
                         case 3:
+							currentDirectory.text = "/Hall/OldBooks";
+							inputField.interactable = true;
+							inputField.text = "Please enter here.";
+							SetNextMessageOnPlay();
+							break;
                         
                         case 11:
                             SetNextMessageOnPlay();
@@ -132,19 +138,23 @@ public class GameManager4 : MonoBehaviour
             {
                 pushFlag = true;
                 SetNextMessageOnPlay();
-                inputFieldUnder.text = "--INSERT--";
+				inputField1.interactable = true;
+				inputField2.interactable = true;
+				inputFieldUnder.interactable = false;
+				inputFieldUnder.text = "--INSERT--";
             }
 
             else if (Input.GetKey(KeyCode.Escape) && index == 8)
             {
                 pushFlag = true;
-                SetNextMessageOnPlay();
-				inputField2.text = "History1.txt, History2.txt"; 
-                inputFieldUnder.text = "";
-
 				inputField1.interactable = false;
+				inputField1.text = "Collection List";
 				inputField2.interactable = false;
-
+				inputField2.text = "History1.txt, History2.txt";
+				inputFieldUnder.interactable = true;
+				inputFieldUnder.text = "";
+				
+				SetNextMessageOnPlay();
 			}
 
             else
@@ -205,14 +215,20 @@ public class GameManager4 : MonoBehaviour
             case 4:
                 if (textValue == "vi Contents.txt")
                 {
+					currentDirectory.text = "";
+					inputField.text = "";
+					inputField.interactable = false;
+					displayInputText.text = "";
                     judgeText.text = "";
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
 
                     imageEditor.SetActive(true);
                     inputField1 = GameObject.Find("InputField1").GetComponent<InputField>();
-                    inputField2 = GameObject.Find("InputField2").GetComponent<InputField>();
-                    inputFieldUnder = GameObject.Find("InputFieldUnder").GetComponent<InputField>();
+					inputField1.interactable = false;
+					inputField2 = GameObject.Find("InputField2").GetComponent<InputField>();
+					inputField2.interactable = false;
+					inputFieldUnder = GameObject.Find("InputFieldUnder").GetComponent<InputField>();
                 }
 
                 else
@@ -226,8 +242,8 @@ public class GameManager4 : MonoBehaviour
                 if (textValue == "ls")
                 {
                     judgeText.text = "";
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
 
                     lSDisplay.SetActive(false);
                     imageBook1.SetActive(true);
@@ -257,8 +273,7 @@ public class GameManager4 : MonoBehaviour
             case 6:
                 if (textValue1 == "Collection List")
                 {
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+					SetNextMessageOnPlay();
                 }
 
                 else
@@ -270,8 +285,7 @@ public class GameManager4 : MonoBehaviour
             case 7:
                 if (textValue2 == "History1.txt, History2.txt")
                 {
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+					SetNextMessageOnPlay();
                 }
 
                 else
@@ -290,10 +304,14 @@ public class GameManager4 : MonoBehaviour
 
         if (textValueUnder == ":wq")
         {
-            index++;
-            cPUMessage.text = currentScenario.Texts[index];
+			SetNextMessageOnPlay();
+
             imageEditor.SetActive(false);
-        }
+
+			currentDirectory.text = "/Hall/OldBooks";
+			inputField.interactable = true;
+			inputField.text = "Please enter here.";
+		}
 
         else
         {

@@ -208,8 +208,8 @@ public class GameManager2 : MonoBehaviour
 					currentDirectory.text = "/Hall/Jewels :";
                     judgeText.text = "";
                     panelWalls.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
                     
                 }
 
@@ -226,8 +226,9 @@ public class GameManager2 : MonoBehaviour
                 if (textValue == "ls")
                 {
                     judgeText.text = "";
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
+
                     lSDisplay.SetActive(false);
 
                     if (index == 7)
@@ -264,8 +265,9 @@ public class GameManager2 : MonoBehaviour
                 if (textValue == "mv History1.txt /Hall/OldBooks")
                 {
                     judgeText.text = "";
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
+
                     LSDisplayOn();
                 }
 
@@ -280,8 +282,9 @@ public class GameManager2 : MonoBehaviour
                 if (textValue == "mv History2.txt /Hall/OldBooks")
                 {
                     judgeText.text = "";
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
+
                     LSDisplayOn();
                 }
 

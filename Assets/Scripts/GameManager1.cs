@@ -187,9 +187,11 @@ public class GameManager1 : MonoBehaviour
             case 10:
                 if (textValue == "ls")
                 {
+					
                     judgeText.text = "";
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
+
                     lSDisplay.SetActive(false);
                     
                     if(index == 7)
@@ -217,8 +219,9 @@ public class GameManager1 : MonoBehaviour
                 if (textValue == "mkdir OldBooks")
                 {
                     judgeText.text = "";
-                    index++;
-                    cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
+
                     LSDisplayOn();
                 }
 

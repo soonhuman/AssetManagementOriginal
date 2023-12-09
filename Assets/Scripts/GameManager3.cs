@@ -305,8 +305,9 @@ public class GameManager3 : MonoBehaviour
 				{
 					currentDirectory.text = "/Hall :";
 					judgeText.text = "";
-					index++;
-					cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
+
 					panelWalls.transform.localPosition = new Vector3(-2000.0f, 0.0f, 0.0f);
 				}
 
@@ -322,8 +323,9 @@ public class GameManager3 : MonoBehaviour
 				{
 					currentDirectory.text = "/Hall/OldBooks :";
 					judgeText.text = "";
-					index++;
-					cPUMessage.text = currentScenario.Texts[index];
+
+					SetNextMessageOnPlay();
+
 					panelWalls.transform.localPosition = new Vector3(-4000.0f, 0.0f, 0.0f);
 				}
 
