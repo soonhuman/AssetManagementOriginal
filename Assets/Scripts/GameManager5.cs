@@ -13,6 +13,7 @@ public class GameManager5 : MonoBehaviour
 	public Text talkText;
 	public GameObject lSDisplay;
 
+	public Text currentDirectory;
 	public InputField inputField;
 	public Text displayInputText;
 	public Text judgeText;
@@ -56,10 +57,10 @@ public class GameManager5 : MonoBehaviour
 				"最近、私の屋敷の中に入って古文書の情報を勝手に覗き見たり\n古文書そのものを盗もうとしたりする奴がいるんだ。",
 				"屋敷の中には君のような使用人が24時間交代で常駐してはいるが、\nそれでも万が一という可能性は常にある。",
 				"そこでだ、君のコマンドの力を使ってこの本に鍵をかけて欲しい。",
-				"今まで言ってこなかったが、実はこの本はコマンドを唱えることによって\n鍵をかけることが出来る。",
+				"今まで言ってこなかったが、実はこの家にある本はコマンドによって\n鍵をかける（権限を変える）ことが出来る。",
 				"君や私などの屋敷の人間には古文書そのものの閲覧権限と、\n古文書一覧の中身の編集や閲覧の許可を与えて欲しい。",
 				"だが、 部外者には古文書やその一覧には何もできないようにしてほしい。\n権限の変更が終わったら最後には Hall に戻ってきてくれ。よろしく頼む。",
-				"ミッション：区画 OldBooks の中の書類の権限を変更し、\n区画 Hall に移動せよ！開始",
+				"ミッション：区画 OldBooks の中の書類の権限を変更し、\n　　　　　　区画 Hall に移動せよ！開始",
 				"まずは区画の中にある物を確認します。コンソールにコマンドを入力して実行しましょう。",
 				"区画の中にあるものがわかりました。次は OldBooks の中にあるものの権限を変更します。",
 				"権限を変更するコマンドは chmod モード 対象ファイル名 です。\nコンソールに chmod 440 History1.txt を入力して実行しましょう。",
@@ -76,6 +77,7 @@ public class GameManager5 : MonoBehaviour
 		};
 
 		inputField = GameObject.Find("InputField").GetComponent<InputField>();
+		inputField.interactable = false;
 
 		SetScenario(scenario05);
 	}
@@ -110,6 +112,10 @@ public class GameManager5 : MonoBehaviour
 
 						case 6:
 							Play();
+							currentDirectory.text = "/Hall/OldBooks : ";
+							inputField.interactable = true;
+							inputField.text = "Please enter here.";
+							inputField.Select();
 							break;
 
 						case 8:
@@ -197,8 +203,7 @@ public class GameManager5 : MonoBehaviour
 				if (textValue == "ls")
 				{
 					judgeText.text = "";
-					index++;
-					cPUMessage.text = currentScenario.Texts[index];
+					SetNextMessageOnPlay();
 
 					lSDisplay.SetActive(false);
 					imageBook1.SetActive(true);
@@ -209,6 +214,7 @@ public class GameManager5 : MonoBehaviour
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
@@ -224,6 +230,7 @@ public class GameManager5 : MonoBehaviour
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
@@ -238,6 +245,7 @@ public class GameManager5 : MonoBehaviour
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
@@ -252,6 +260,7 @@ public class GameManager5 : MonoBehaviour
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
@@ -261,13 +270,13 @@ public class GameManager5 : MonoBehaviour
 				{
 					judgeText.text = "History1.txtへの書き込み権限が存在しません。";
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
-					index++;
-					cPUMessage.text = currentScenario.Texts[index];
+					SetNextMessageOnPlay();
 				}
 
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
@@ -277,13 +286,13 @@ public class GameManager5 : MonoBehaviour
                 {
 					judgeText.text = "History2.txtへの書き込み権限が存在しません。";
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
-					index++;
-					cPUMessage.text = currentScenario.Texts[index];
+					SetNextMessageOnPlay();
 				}
 
                 else
                 {
 					judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
@@ -291,9 +300,12 @@ public class GameManager5 : MonoBehaviour
 			case 14:
 				if (textValue == "vi Contents.txt")
 				{
+					currentDirectory.text = "";
+					inputField.text = "";
+					inputField.interactable = false;
+					displayInputText.text = "";
 					judgeText.text = "";
-					index++;
-					cPUMessage.text = currentScenario.Texts[index];
+					SetNextMessageOnPlay();
 
 					imageEditor.SetActive(true);
 					inputFieldUnder = GameObject.Find("InputFieldUnder").GetComponent<InputField>();
@@ -302,6 +314,7 @@ public class GameManager5 : MonoBehaviour
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
@@ -310,14 +323,14 @@ public class GameManager5 : MonoBehaviour
 				if (textValue == "cd ..")
 				{
 					judgeText.text = "";
-					index++;
-					cPUMessage.text = currentScenario.Texts[index];
+					SetNextMessageOnPlay();
 					panelWalls.transform.localPosition = new Vector3(-2000.0f, 0.0f, 0.0f);
 				}
 
 				else
 				{
 					judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
 				break;
@@ -332,9 +345,14 @@ public class GameManager5 : MonoBehaviour
 
 		if (textValueUnder == ":wq")
 		{
-			index++;
-			cPUMessage.text = currentScenario.Texts[index];
+			SetNextMessageOnPlay();
+
 			imageEditor.SetActive(false);
+
+			currentDirectory.text = "/Hall/OldBooks : ";
+			inputField.interactable = true;
+			inputField.text = "Please enter here.";
+			inputField.Select();
 		}
 
 		else

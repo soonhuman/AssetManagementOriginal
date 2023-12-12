@@ -60,10 +60,10 @@ public class GameManager4 : MonoBehaviour
                 "まずは Contents.txt を生成します。",
                 "新しいテキストファイルを作るには vi ファイル名 です。\nコンソールに vi Contents.txt を入力して実行しましょう。",
                 "編集画面に移動できました！続いては編集モードをオンにします。\n編集モードをオンにするには a もしくは i を押します。",
-                "編集モードをオンに出来ました。\nCollection List と書いてみてください。",
-                "次は区画 OldBooks にある古文書を書き記します。\n古文書の名前は History1.txt, History2.txt です。",
+                "編集モードをオンに出来ました。\n一番上の行にCollection List と書いてみてください。",
+                "次は一つ下の行に区画 OldBooks にある古文書を書き記します。\n古文書の名前は History1.txt, History2.txt です。",
                 "古文書一覧を書くことが出来たので編集画面を終了します。\nまず、編集モードを終了するためにはescキーを押します。",
-                ":wqを押してEnterキーを押してください。",
+                "一番下の行に:wqを入力してEnterキーを押してください。",
                 "最後に明かりをつけて区画の中にある物を確認します。\nコンソールにコマンドを入力して実行しましょう。",
                 "Contents.txt を生成することができました！"
             },
@@ -107,9 +107,10 @@ public class GameManager4 : MonoBehaviour
                             break;
 
                         case 3:
-							currentDirectory.text = "/Hall/OldBooks";
+							currentDirectory.text = "/Hall/OldBooks : ";
 							inputField.interactable = true;
 							inputField.text = "Please enter here.";
+							inputField.Select();
 							SetNextMessageOnPlay();
 							break;
                         
@@ -141,12 +142,17 @@ public class GameManager4 : MonoBehaviour
 				inputField1.interactable = true;
 				inputField2.interactable = true;
 				inputFieldUnder.interactable = false;
+
 				inputFieldUnder.text = "--INSERT--";
-            }
+
+				inputField1.Select();
+
+			}
 
             else if (Input.GetKey(KeyCode.Escape) && index == 8)
             {
                 pushFlag = true;
+				inputFieldUnder.Select();
 				inputField1.interactable = false;
 				inputField1.text = "Collection List";
 				inputField2.interactable = false;
@@ -234,6 +240,7 @@ public class GameManager4 : MonoBehaviour
                 else
                 {
                     judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
                 break;
@@ -254,6 +261,7 @@ public class GameManager4 : MonoBehaviour
                 else
                 {
                     judgeText.text = "無効なコマンドです。";
+					inputField.Select();
 					judgeText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
 				}
                 break;
@@ -273,6 +281,7 @@ public class GameManager4 : MonoBehaviour
             case 6:
                 if (textValue1 == "Collection List")
                 {
+					inputField2.Select();
 					SetNextMessageOnPlay();
                 }
 
@@ -308,7 +317,7 @@ public class GameManager4 : MonoBehaviour
 
             imageEditor.SetActive(false);
 
-			currentDirectory.text = "/Hall/OldBooks";
+			currentDirectory.text = "/Hall/OldBooks : ";
 			inputField.interactable = true;
 			inputField.text = "Please enter here.";
 		}
