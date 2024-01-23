@@ -125,7 +125,7 @@ public class GameManager0 : MonoBehaviour
 		}
 		else
 		{
-			SceneManager.LoadScene("ClearScene");
+			SceneManager.LoadScene("LevelScene");
 		}
 	}
 
